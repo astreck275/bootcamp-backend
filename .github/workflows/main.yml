@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Deploy on Heroku
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      #Deplay to Heroku Repo
+      - name: Deploy to Heroku
+        uses: AkhileshNS/heroku-deploy@v3.6.8
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY}}
+          heroku_email: ${{ secrets.HEROKU_EMAIL}}
+          heroku_app_name: bootcamp-backends
+          branch: main
+          usedocker: true
+          docker_heroku_process_type: web

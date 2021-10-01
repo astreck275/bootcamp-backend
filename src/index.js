@@ -12,7 +12,7 @@ app.use(function (req, res, next) {
     next()  
     });
 
-const port = 6969;
+const port = process.env.PORT || 6969;
 const library = {
     movies: 32,
     books: 23453423,
